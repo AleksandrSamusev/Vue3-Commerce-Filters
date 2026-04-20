@@ -1,38 +1,27 @@
-# filters
+# Vue-Commerce Filter Engine
 
-This template should help get you started developing with Vue 3 in Vite.
+A high-performance, reactive product listing interface built with **Vue 3**. This project demonstrates advanced state management across multiple sibling components to create a seamless "Faceted Search" experience.
 
-## Recommended IDE Setup
+![Project Preview](./public/screenshots/preview.jpg) 
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Key Features
 
-## Recommended Browser Setup
+*   **Faceted Search Logic:** Sophisticated filtering system using **OR** logic within categories (e.g., multiple sizes) and **AND** logic between categories (e.g., Gender + Color).
+*   **Reactive State Management:** Real-time synchronization of filter badges, selection counts, and active UI states across a "Star" component architecture.
+*   **Smart Sorting:** Dynamic sorting (Price: Low/High, Newest, A-Z) that intelligently handles both standard and discounted sale prices.
+*   **Zero-Layout-Shift UI:** Custom-built components using CSS `inset box-shadow` techniques to prevent UI jumping during state changes.
+*   **Product Tagging:** Visual indicators for "SALE" and "NEW" items driven by a flexible attribute-based data seeder.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Tech Stack
 
-## Customize configuration
+*   **Framework:** Vue 3 (Composition API)
+*   **Styling:** SCSS / Flexbox
+*   **Icons:** Custom SVG components
+*   **Data:** Local JSON-based seeder with attribute-mapping
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Installation & Setup
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com
+   cd your-repo-name
