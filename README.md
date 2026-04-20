@@ -23,5 +23,17 @@ A high-performance, reactive product listing interface built with **Vue 3**. Thi
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com
-   cd your-repo-name
+   git clone https://github.com/AleksandrSamusev/Vue3-Commerce-Filters.git
+   cd Vue3-Commerce-Filters
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+
+3. **Install dependencies:**
+   ```bash
+   npm run dev
+
+4. **Build for production:**
+   ```bash
+   npm run build
