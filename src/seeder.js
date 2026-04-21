@@ -59,7 +59,7 @@ export default [
         price: 22.99,
         discountPrice: null,
         url: "/images/mod7.png",
-        createdAt: "2026-04-18", // Very Recent
+        createdAt: "2026-04-18", 
         attributes: ['gen_female', 'category_pants', 'colour_gray', 'fabric_wool', 'size_m', 'feature_new']
     },
     {
@@ -86,7 +86,7 @@ export default [
         price: 13.50,
         discountPrice: null,
         url: "/images/mod10.png",
-        createdAt: "2026-04-19", // Very Recent
+        createdAt: "2026-04-19",
         attributes: ['gen_female', 'category_tshirts', 'colour_blue', 'fabric_cotton', 'size_xs', 'size_xxs', 'size_s', 'size_m', 'size_l', 'feature_new']
     },
     {
@@ -113,7 +113,7 @@ export default [
         price: 40.19,
         discountPrice: null,
         url: "/images/mod13.png",
-        createdAt: "2026-04-20", // Newest Item
+        createdAt: "2026-04-20",
         attributes: ['gen_female', 'category_shorts', 'colour_blue', 'fabric_linen', 'sport_swimming', 'size_s', 'size_l', 'size_m', 'feature_new']
     },
     {

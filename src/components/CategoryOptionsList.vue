@@ -6,8 +6,7 @@ import { computed } from 'vue';
 const props = defineProps(['catId', 'allSelections']);
 const emit = defineEmits(['toggle-option', 'close', 'clear-all', 'clear-category']);
 
-const selectedCat = computed(() => {
-    // Use == to handle potential String/Number ID differences
+const selectedCat = computed(() => {    
     return categories.find(cat => cat.id == props.catId);
 });
 

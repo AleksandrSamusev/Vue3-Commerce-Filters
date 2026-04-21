@@ -16,7 +16,7 @@ const sortingOptions = [
 ];
 const handleSorting = () => {
     isVisible.value = false;
-    emit('sort-change', selectedSortingOption.value); // Tell parent about the new sort
+    emit('sort-change', selectedSortingOption.value);
 };
 onClickOutside(dropdownContainer, () => {
     isVisible.value = false;

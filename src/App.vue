@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import allProducts from '@/seeder.js'; // Import your refactored seeder
+import allProducts from '@/seeder.js';
 import Header from '@/components/Header.vue'
 import Banner from '@/components/Banner.vue';
 import Hero from './components/Hero.vue';
@@ -13,7 +13,6 @@ const isMenuOpen = ref(false);
 const selectedId = ref(null);
 const products = ref(allProducts);
 const currentSort = ref('low-high');
-// Store selections as: { categoryId: [optionId, optionId] }
 const selections = ref({});
 
 const clearCategoryFilters = (catId) => {
@@ -29,75 +28,40 @@ const handleOptionToggle = (catId, optId) => {
   const index = selections.value[catId].indexOf(optId);
   if (index > -1) {
 
-    selections.value[catId].splice(index, 1); // Remove if exists
-    // If we just removed the last option, close the drawer
+    selections.value[catId].splice(index, 1);
     if (selections.value[catId].length === 0) {
       selectedId.value = null;
     }
   } else {
-    selections.value[catId].push(optId); // Add if new
+    selections.value[catId].push(optId);
   }
-  // FORCE REACTIVITY: Re-assign the object so Vue "sees" the internal array change
-  // This ensures your badges in the CategoriesBar update instantly
   selections.value = { ...selections.value };
 };
 
 const resetAllFilters = () => {
-  selections.value = {};    // 1. Clears all badges and checkboxes
-  selectedId.value = null;   // 2. Removes border and hides the options bar
+  selections.value = {};
+  selectedId.value = null;
 };
 
 const hasAnyFilters = computed(() => {
   return Object.values(selections.value).some(arr => arr.length > 0);
 });
 
-// const filteredProducts = computed(() => {
-//   // 1. If no filters are active, return everything
-//   if (!hasAnyFilters.value) {
-//     return products.value;
-//   }
-//   return products.value.filter(product => {
-//     const virtualAttributes = [...product.attributes];
-//     const effectivePrice = product.discountPrice ?? product.price;
-//     // Add the correct Price Range tag
-//     if (effectivePrice < 10) virtualAttributes.push('price_less_than_ten');
-//     else if (effectivePrice <= 50) virtualAttributes.push('price_ten_to_fifty');
-//     else virtualAttributes.push('price_above_fifty')
-
-//     // Add the correct Discount status tag
-//     const hasDiscount = product.discountPrice !== null && product.discountPrice < product.price;
-//     virtualAttributes.push(hasDiscount ? 'discount_with_discount' : 'discount_without_discount');
-
-//     // 2. We must pass the check for EVERY active category
-//     return Object.entries(selections.value).every(([catId, selectedOptions]) => {
-//       // If this category is empty, it doesn't filter the product
-//       if (selectedOptions.length === 0) return true;
-
-//       // Check if the product has at least one of the selected option IDs
-//       return selectedOptions.some(optId => virtualAttributes.includes(optId));
-//     });
-//   });
-// });
 const filteredProducts = computed(() => {
-  // 1. Create a copy to avoid mutating the master list
   let result = [...products.value];
 
-  // 2. Apply Filtering
   if (hasAnyFilters.value) {
     result = result.filter(product => {
       const virtualAttributes = [...product.attributes];
       const effectivePrice = product.discountPrice ?? product.price;
 
-      // Add Price Brackets
       if (effectivePrice < 10) virtualAttributes.push('price_less_than_ten');
       else if (effectivePrice <= 50) virtualAttributes.push('price_ten_to_fifty');
       else virtualAttributes.push('price_above_fifty');
 
-      // Add Discount Tags
       const hasDiscount = product.discountPrice !== null && product.discountPrice < product.price;
       virtualAttributes.push(hasDiscount ? 'discount_with_discount' : 'discount_without_discount');
 
-      // Check selections
       return Object.entries(selections.value).every(([catId, selectedOptions]) => {
         if (selectedOptions.length === 0) return true;
         return selectedOptions.some(optId => virtualAttributes.includes(optId));
@@ -105,10 +69,8 @@ const filteredProducts = computed(() => {
     });
   }
 
-  // 3. Apply Sorting
-  // We use .sort() on the result array (which is already a copy)
   return result.sort((a, b) => {
-    // Helper for Price Sorting (always uses the sale price if available)
+
     const priceA = a.discountPrice ?? a.price;
     const priceB = b.discountPrice ?? b.price;
 
@@ -125,11 +87,10 @@ const filteredProducts = computed(() => {
     }
 
     if (currentSort.value === 'newest') {
-      // Sort by Date: later date minus earlier date
       return new Date(b.createdAt) - new Date(a.createdAt);
     }
 
-    return 0; // Default: no change
+    return 0;
   });
 });
 </script>

@@ -22,7 +22,7 @@ const discountPercentage = computed(() => {
         <div class="image-external-wrapper">
             <div class="image-wrapper">
                 <span v-if="product.discountPrice" class="badge sale-badge">SALE</span>
-                <!-- Show NEW only if it's NOT on sale and has the feature_new tag -->
+
                 <span v-else-if="product.attributes.includes('feature_new')" class="badge new-badge">
                     NEW
                 </span>
@@ -34,14 +34,12 @@ const discountPercentage = computed(() => {
         <span>{{ product.name }}</span>
 
         <div class="price-row">
-            <!-- Case A: Discounted -->
             <template v-if="product.discountPrice">
                 <span class="original-price strike">$ {{ product.price.toFixed(2) }}</span>
                 <span class="sale-price">$ {{ product.discountPrice.toFixed(2) }}</span>
                 <span class="percentage">({{ discountPercentage }}% off)</span>
             </template>
 
-            <!-- Case B: Normal -->
             <span v-else class="regular-price">$ {{ product.price.toFixed(2) }}</span>
         </div>
     </div>

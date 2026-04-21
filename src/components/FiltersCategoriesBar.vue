@@ -1,11 +1,9 @@
 <script setup>
 import categories from '@/filterCategories';
 
-// 1. Assign props to a constant so you can use 'props.catId'
 const props = defineProps(['isVisible', 'catId', 'allSelections']);
 const emit = defineEmits(['selectedCategory']);
 const handleCategorySelection = (id) => {
-    // 2. Use props.catId to determine the toggle state
     const toggleId = id === props.catId ? null : id;
     emit('selectedCategory', toggleId);
 }
@@ -15,7 +13,6 @@ const handleCategorySelection = (id) => {
         <div @click="handleCategorySelection(category.id)" :class="{ 'selected': catId === category.id }"
             class="category" v-for="category in categories" :key="category.id">
             <span>{{ category.name }}</span>
-            <!-- Show badge if this category has IDs in the selections object -->
             <Transition name="fade">
                 <span v-if="allSelections?.[category.id]?.length" class="badge">
                     {{ allSelections[category.id].length }}
@@ -50,8 +47,7 @@ const handleCategorySelection = (id) => {
     cursor: pointer;
 }
 
-.selected {
-    //border-color: #040E45;
+.selected {   
     border: 2px solid #040E45;
 }
 
